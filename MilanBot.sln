@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilanBot", "MilanBot\MilanBot.csproj", "{2A8B9CAD-440D-47A4-9F53-14AAFE5B57B5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MilanBotLib", "MilanBotLib\MilanBotLib.csproj", "{91FAFBC5-F1AE-4A44-AE57-50695A52F8E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilanBot", "MilanBot\MilanBot.csproj", "{D52FEE58-AD07-4412-A711-0088E4165981}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +11,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2A8B9CAD-440D-47A4-9F53-14AAFE5B57B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A8B9CAD-440D-47A4-9F53-14AAFE5B57B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A8B9CAD-440D-47A4-9F53-14AAFE5B57B5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{2A8B9CAD-440D-47A4-9F53-14AAFE5B57B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A8B9CAD-440D-47A4-9F53-14AAFE5B57B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A8B9CAD-440D-47A4-9F53-14AAFE5B57B5}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{91FAFBC5-F1AE-4A44-AE57-50695A52F8E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91FAFBC5-F1AE-4A44-AE57-50695A52F8E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91FAFBC5-F1AE-4A44-AE57-50695A52F8E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91FAFBC5-F1AE-4A44-AE57-50695A52F8E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D52FEE58-AD07-4412-A711-0088E4165981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D52FEE58-AD07-4412-A711-0088E4165981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D52FEE58-AD07-4412-A711-0088E4165981}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D52FEE58-AD07-4412-A711-0088E4165981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D52FEE58-AD07-4412-A711-0088E4165981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D52FEE58-AD07-4412-A711-0088E4165981}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

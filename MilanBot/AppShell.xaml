@@ -4,11 +4,49 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MilanBot"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:page="clr-namespace:MilanBot.Pages"
+    Shell.FlyoutWidth="68"
+    Shell.FlyoutBehavior="{OnIdiom Phone=Disabled, Default=Locked}">
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <Grid RowDefinitions="68">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Grid.GestureRecognizers>
+                <Image Source="tab_settings.png"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               WidthRequest="40"
+                               HeightRequest="40"
+                        />
+            </Grid>
+        </DataTemplate>
 
-    <ShellContent
+    </Shell.FlyoutFooterTemplate>
+    <!--<ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        ContentTemplate="{DataTemplate page:MainPage}"
+        Route="MainPage" />-->
+    <!-- Desktop/Tablet-->
+    <FlyoutItem Title="Home" Style="{StaticResource HomeFlyout}">
+        <ShellContent ContentTemplate="{DataTemplate page:MainPage}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="Settings" Route="settings" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate page:SettingsPage}"/>
+    </FlyoutItem>
 
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid WidthRequest="44" HeightRequest="68"
+                    ColumnDefinitions="44" RowDefinitions="68">
+                <Image Source="{Binding FlyoutIcon}"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"                               
+                        HeightRequest="38"
+                        WidthRequest="38"
+                        />
+            </Grid>
+        </DataTemplate>
+
+    </Shell.ItemTemplate>
 </Shell>
