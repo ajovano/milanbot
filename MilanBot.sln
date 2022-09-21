@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilanBot", "MilanBot\MilanBot.csproj", "{D52FEE58-AD07-4412-A711-0088E4165981}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MilanBotLib", "MilanBotLib\MilanBotLib.csproj", "{35ECE2B8-4672-42E6-9AA7-7D30A361290B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{D52FEE58-AD07-4412-A711-0088E4165981}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D52FEE58-AD07-4412-A711-0088E4165981}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D52FEE58-AD07-4412-A711-0088E4165981}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{35ECE2B8-4672-42E6-9AA7-7D30A361290B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35ECE2B8-4672-42E6-9AA7-7D30A361290B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35ECE2B8-4672-42E6-9AA7-7D30A361290B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35ECE2B8-4672-42E6-9AA7-7D30A361290B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

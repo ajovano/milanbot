@@ -1,4 +1,5 @@
 ﻿using MilanBot.ViewModels;
+using MilanBotLib.ADO;
 
 namespace MilanBot.Pages;
 
@@ -8,25 +9,24 @@ public partial class MainPage : ContentPage
 
     public MainPage()
     {
-        InitializeComponent();
-        items = new AdoItemsList();
-        BindingContext = items;
+        this.InitializeComponent();
+        this.items = new AdoItemsList();
+        this.BindingContext = this.items;
     }
 
     private void PauseTracking(object sender, EventArgs e)
     {
-        // this.items.PauseTracking();
+        this.items.PauseTracking();
     }
 
     private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        items.OnItemSelected(e.SelectedItem as AdoItem);
-
+        items.OnItemSelected(e.SelectedItem as ADOWorkItem);
     }
 
-    private void Configure_Clicked(object sender, EventArgs e)
+    private void RefreshADOItems(object sender, EventArgs e)
     {
-
+        _ = this.items.RefreshItems();
     }
 }
 

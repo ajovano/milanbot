@@ -10,17 +10,33 @@
             VerticalOptions="Center">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="80"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <Label
-                    Text="ADO Access Token"/>
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    VerticalOptions="Center"
+                    Text="GIT Path"/>
                 <Entry
                     Grid.Column="1"
                     Grid.Row="0"
+                    VerticalOptions="Center"
+                    Text="{Binding Path=GITPath}"/>
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    VerticalOptions="Center"
+                    Text="ADO Access Token"/>
+                <Entry
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    IsPassword="True"
+                    VerticalOptions="Center"
                     Text="{Binding Path=Token}"/>
             </Grid>
         </VerticalStackLayout>

@@ -7,31 +7,10 @@
     xmlns:page="clr-namespace:MilanBot.Pages"
     Shell.FlyoutWidth="68"
     Shell.FlyoutBehavior="{OnIdiom Phone=Disabled, Default=Locked}">
-    <Shell.FlyoutFooterTemplate>
-        <DataTemplate>
-            <Grid RowDefinitions="68">
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                </Grid.GestureRecognizers>
-                <Image Source="tab_settings.png"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center"
-                               WidthRequest="40"
-                               HeightRequest="40"
-                        />
-            </Grid>
-        </DataTemplate>
-
-    </Shell.FlyoutFooterTemplate>
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate page:MainPage}"
-        Route="MainPage" />-->
-    <!-- Desktop/Tablet-->
     <FlyoutItem Title="Home" Style="{StaticResource HomeFlyout}">
         <ShellContent ContentTemplate="{DataTemplate page:MainPage}"/>
     </FlyoutItem>
-    <FlyoutItem Title="Settings" Route="settings" FlyoutItemIsVisible="False">
+    <FlyoutItem Title="Settings" Style="{StaticResource SettingsFlyout}" Route="settings">
         <ShellContent ContentTemplate="{DataTemplate page:SettingsPage}"/>
     </FlyoutItem>
 

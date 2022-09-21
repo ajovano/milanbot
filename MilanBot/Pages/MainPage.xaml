@@ -1,29 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utils="clr-namespace:MilanBot.Utilities"
              x:Class="MilanBot.Pages.MainPage">
-
+    <ContentPage.Resources>
+        <utils:TimeConverter x:Key="timeConverter" />
+    </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
             <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                Source="milan.jfif"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
+            <HorizontalStackLayout>
+                <Label Text="Pause Tracking:" VerticalOptions="Center"/>
+                <CheckBox IsChecked="{Binding Mode=TwoWay, Path=IsPaused}"/>
+            </HorizontalStackLayout>
+            <!--<HorizontalStackLayout>
+                <Label Text="Track active work item automatically via GIT:" VerticalOptions="Center"/>
+                <CheckBox IsChecked="{Binding Mode=TwoWay, Path=IsAutomaticMode}"/>
+            </HorizontalStackLayout>-->
             <ListView
                 ItemsSource="{Binding Path=AdoItems}"
                 SelectedItem="{Binding Mode=TwoWay, Path=ActiveItem}"
                 ItemSelected="ListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Path=ID}" Detail="{Binding Path=Title}" />
+                        <TextCell Text="{Binding StringFormat='{0}', Path=ID}" Detail="{Binding Path=Title}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Pause Tracking" Clicked="PauseTracking"/>
+            <HorizontalStackLayout>
+                <Button Text="Refresh" Clicked="RefreshADOItems"/>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
