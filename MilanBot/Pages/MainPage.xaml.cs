@@ -19,11 +19,6 @@ public partial class MainPage : ContentPage
         this.items.PauseTracking();
     }
 
-    private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-    {
-        items.OnItemSelected(e.SelectedItem as ADOWorkItem);
-    }
-
     private void RefreshADOItems(object sender, EventArgs e)
     {
         _ = this.items.RefreshItems();

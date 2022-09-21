@@ -4,13 +4,14 @@
              xmlns:utils="clr-namespace:MilanBot.Utilities"
              x:Class="MilanBot.Pages.MainPage">
     <ContentPage.Resources>
-        <utils:TimeConverter x:Key="timeConverter" />
+        <utils:ReverseBoolConverter x:Key="reverseBoolConverter" />
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
             VerticalOptions="Center">
+            <Label Text="{Binding Path=StatusMessage}" VerticalOptions="Center"/>
             <Image
                 Source="milan.jfif"
                 HeightRequest="200"
@@ -19,17 +20,18 @@
                 <Label Text="Pause Tracking:" VerticalOptions="Center"/>
                 <CheckBox IsChecked="{Binding Mode=TwoWay, Path=IsPaused}"/>
             </HorizontalStackLayout>
-            <!--<HorizontalStackLayout>
+            <HorizontalStackLayout>
                 <Label Text="Track active work item automatically via GIT:" VerticalOptions="Center"/>
                 <CheckBox IsChecked="{Binding Mode=TwoWay, Path=IsAutomaticMode}"/>
-            </HorizontalStackLayout>-->
+            </HorizontalStackLayout>
             <ListView
                 ItemsSource="{Binding Path=AdoItems}"
-                SelectedItem="{Binding Mode=TwoWay, Path=ActiveItem}"
-                ItemSelected="ListView_ItemSelected">
+                IsEnabled="{Binding Path=IsAutomaticMode, Converter={StaticResource Key=reverseBoolConverter}}"
+                SelectedItem="{Binding Mode=TwoWay, Path=ActiveItem}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding StringFormat='{0}', Path=ID}" Detail="{Binding Path=Title}" />
+                        <TextCell 
+                            Text="{Binding StringFormat='{0}', Path=ID}" Detail="{Binding Path=Title}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
