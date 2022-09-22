@@ -44,7 +44,7 @@ namespace MilanBot.ViewModels
                 this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsAutomaticMode)));
                 if (value)
                 {
-                    this.automaticModeTimer = new Timer(this.AutomaticModeTimerCallback, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+                    this.automaticModeTimer = new Timer(this.AutomaticModeTimerCallback, null, TimeSpan.Zero, TimeSpan.FromSeconds(10));
                     this.AutomaticModeTimerCallback();
                 }
                 else
@@ -92,21 +92,22 @@ namespace MilanBot.ViewModels
         }
 
         private bool isPaused;
+        private DateTime pauseStartTime;
+        private TimeSpan totalPauseTime;
         public bool IsPaused { 
             get => isPaused; 
             set
             {
-                if (!value)
+                if (this.isPaused && !value)
                 {
-                    this.TimeStarted += (DateTime.Now - this.TimePaused);
+                    this.totalPauseTime += DateTime.Now - this.pauseStartTime;
                 }
-                this.TimePaused = DateTime.Now;
+                pauseStartTime = DateTime.Now;
                 this.isPaused = value;
                 this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsPaused)));
             }
         }
         public DateTime TimeStarted { get; set; }
-        public DateTime TimePaused { get; set; }
 
         public AdoItemsList()
         {
@@ -121,10 +122,11 @@ namespace MilanBot.ViewModels
         {
             if (this.IsPaused)
             {
-                this.TimeStarted += (DateTime.Now - this.TimePaused);
                 this.IsPaused = false;
             }
-            var timeSpent = DateTime.Now - this.TimeStarted;
+            var pauseTime = this.totalPauseTime;
+            var timeSpent = DateTime.Now - this.TimeStarted - pauseTime;
+            this.totalPauseTime = TimeSpan.Zero;
             if (item != null && item?.ID != 0)
             {
                 await item.UpdateTotalHoursSpent(item.TotalHoursSpent + timeSpent.TotalHours);
@@ -177,19 +179,6 @@ namespace MilanBot.ViewModels
         {
             var items = await RefreshItems();
             this.ActiveItem = this.AdoItems[0];
-        }
-
-        public void PauseTracking()
-        {
-            if (this.IsPaused)
-            {
-                this.TimeStarted += (DateTime.Now - this.TimePaused);
-            }
-            else
-            {
-                this.TimePaused = DateTime.Now;
-            }
-            this.IsPaused = !this.IsPaused;
         }
     }
 }

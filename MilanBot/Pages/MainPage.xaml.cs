@@ -14,11 +14,6 @@ public partial class MainPage : ContentPage
         this.BindingContext = this.items;
     }
 
-    private void PauseTracking(object sender, EventArgs e)
-    {
-        this.items.PauseTracking();
-    }
-
     private void RefreshADOItems(object sender, EventArgs e)
     {
         _ = this.items.RefreshItems();
