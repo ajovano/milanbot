@@ -19,7 +19,7 @@ namespace MilanBot.ViewModels
                 {
                     if (this.activeItem?.ID != value?.ID)
                     {
-                        this.UpdateADOItem();
+                        this.UpdateADOItem(this.activeItem);
                         this.TimeStarted = DateTime.Now;
                     }
                     this.activeItem = value;
@@ -56,7 +56,7 @@ namespace MilanBot.ViewModels
 
         private async void AutomaticModeTimerCallback(object state = null)
         {
-        var path = await SecureStorage.Default.GetAsync("GITPath");
+            var path = await SecureStorage.Default.GetAsync("GITPath");
             if (string.IsNullOrEmpty(path))
             {
                 this.StatusMessage = "No GIT Repo configured.";
@@ -96,14 +96,11 @@ namespace MilanBot.ViewModels
             get => isPaused; 
             set
             {
-                if (value)
-                {
-                    this.TimePaused = DateTime.Now;
-                }
-                else
+                if (!value)
                 {
                     this.TimeStarted += (DateTime.Now - this.TimePaused);
                 }
+                this.TimePaused = DateTime.Now;
                 this.isPaused = value;
                 this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsPaused)));
             }
@@ -120,7 +117,7 @@ namespace MilanBot.ViewModels
             this.TimeStarted = DateTime.Now;
         }
 
-        private void UpdateADOItem()
+        private async void UpdateADOItem(ADOWorkItem item)
         {
             if (this.IsPaused)
             {
@@ -128,11 +125,12 @@ namespace MilanBot.ViewModels
                 this.IsPaused = false;
             }
             var timeSpent = DateTime.Now - this.TimeStarted;
-            if (this.activeItem != null && this.activeItem?.ID != 0)
+            if (item != null && item?.ID != 0)
             {
-                // call to ADO to update ADO item.
+                await item.UpdateTotalHoursSpent(item.TotalHoursSpent + timeSpent.TotalHours);
             }
         }
+
         public async Task<IEnumerable<ADOWorkItem>> RefreshItems()
         {
             this.StatusMessage = null;
