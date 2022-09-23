@@ -129,7 +129,9 @@ namespace MilanBot.ViewModels
             this.totalPauseTime = TimeSpan.Zero;
             if (item != null && item?.ID != 0)
             {
-                await item.UpdateTotalHoursSpent(item.TotalHoursSpent + timeSpent.TotalHours);
+                double newHours = item.TotalHoursSpent + timeSpent.TotalHours;
+                await item.UpdateTotalHoursSpent(newHours);
+                this.StatusMessage = String.Format("Work item {0} updated to {1} effort.", item.ID, newHours);
             }
         }
 
