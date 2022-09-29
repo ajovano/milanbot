@@ -17,7 +17,7 @@ namespace MilanBot.ViewModels
             {
                 if (value != null)
                 {
-                    if (this.activeItem?.ID != value?.ID)
+                    if (this.activeItem?.ID != value?.ID && !this.IsPaused)
                     {
                         this.UpdateADOItem(this.activeItem);
                         this.TimeStarted = DateTime.Now;
@@ -92,17 +92,19 @@ namespace MilanBot.ViewModels
         }
 
         private bool isPaused;
-        private DateTime pauseStartTime;
-        private TimeSpan totalPauseTime;
         public bool IsPaused { 
             get => isPaused; 
             set
             {
-                if (this.isPaused && !value)
+                if (!this.isPaused && value)
                 {
-                    this.totalPauseTime += DateTime.Now - this.pauseStartTime;
+                    // pausing, save the current item.
+                    UpdateADOItem(this.activeItem);
+                } 
+                else
+                {
+                    this.TimeStarted = DateTime.Now;
                 }
-                pauseStartTime = DateTime.Now;
                 this.isPaused = value;
                 this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsPaused)));
             }
@@ -120,13 +122,7 @@ namespace MilanBot.ViewModels
 
         private async void UpdateADOItem(ADOWorkItem item)
         {
-            if (this.IsPaused)
-            {
-                this.IsPaused = false;
-            }
-            var pauseTime = this.totalPauseTime;
-            var timeSpent = DateTime.Now - this.TimeStarted - pauseTime;
-            this.totalPauseTime = TimeSpan.Zero;
+            var timeSpent = DateTime.Now - this.TimeStarted;
             if (item != null && item?.ID != 0)
             {
                 double newHours = item.TotalHoursSpent + timeSpent.TotalHours;
