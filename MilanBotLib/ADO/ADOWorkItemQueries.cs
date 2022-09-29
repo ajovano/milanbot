@@ -24,7 +24,6 @@ namespace MilanBotLib.ADO
         {
             var client = _connection.GetClient<WorkItemTrackingHttpClient>();
             var currentIterationPath = await _getCurrentIterationPath();
-            currentIterationPath = "One\\Copper\\CY22Q3\\2Wk\\2Wk13"; // don't check this in.
             Wiql queryWiql = new Wiql()
             {
                 Query = string.Format(@"
